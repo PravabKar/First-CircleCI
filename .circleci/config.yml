@@ -20,7 +20,7 @@ jobs:
       - run: echo "Deployment file running..."
 
 workflows:
-  build_and_test_and_demo_deploy:
+  build_and_test_and_deploy:
     jobs:
       - build
       - test:
