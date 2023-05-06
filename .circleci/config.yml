@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: python tests.py
-  deployment:
+  deploy:
     docker:
       - image: cimg/python:3.11
     steps:
@@ -26,9 +26,9 @@ workflows:
       - test:
           requires:
             - build
-      - deployment:
+      - deploy:
           requires:
-            -test
+            - test
           filters:
             branches:
               only: main
