@@ -13,11 +13,22 @@ jobs:
     steps:
       - checkout
       - run: python tests.py
+  deployment:
+    docker:
+      - image: cimg/python:3.11
+    steps:
+      - run: echo "Deployment file running..."
 
 workflows:
-  build_and_test:
+  build_and_test_and_demo_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - deployment:
+          requires:
+            -test
+          filters:
+            branches:
+              only: main
